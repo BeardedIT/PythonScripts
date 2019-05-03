@@ -11,6 +11,7 @@ import os, shutil, re
 base_path = os.getcwd()
 file_names = os.listdir(base_path)
 increment=0
+# Pull show name and season number from filename
 def ParseName(unsplit):
     try:
         print(unsplit)
@@ -23,7 +24,9 @@ def ParseName(unsplit):
     except:
         print ('Sorry '+unsplit+' is not a valid file')
 for files in file_names:
+    # Check if file is a video
     if files.endswith(".mp4") or files.endswith(".m4v") or files.endswith('.mkv')or files.endswith('.avi'):
+        # Check if filename meets required specs
         match=re.search(r".+[ - ]\d+[x]\d+[ - ].+",files)
         if match:
             try:
@@ -32,10 +35,10 @@ for files in file_names:
                 if not os.path.exists(dest_dir):
                         os.makedirs(dest_dir)
                 shutil.move(base_path+os.sep+files,dest_dir)
-                #print(base_path+os.sep+files + '-->' + dest_dir)
+                print(base_path+os.sep+files + '-->' + dest_dir)
                 increment+=1
             except:
                 print('File move failed')
         else:
-            print()
+            print('Sorry '+ files + ' is not a valid file')
         print(increment,'Files were moved. Have a nice day')
