@@ -26,9 +26,9 @@ def retrieve_info(url):
 # Downloads the image as name implies
 def downloader(url, filename):
     if os.path.exists(filename):
-        print filename+' exists - Skipping'
+        print (filename+' exists - Skipping')
     elif not os.path.exists(filename):
-        print'Downloading',filename
+        print('Downloading',filename)
         # Download image to filename
         urllib.urlretrieve(url, filename)
 def __main__():
